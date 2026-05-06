@@ -32,11 +32,17 @@ img {
 }
 
 .page-shell {
-  width: min(100%, 1120px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   margin: 0 auto;
   background: #f8fbff;
   min-height: 100vh;
-  box-shadow: 0 0 0 1px rgba(12, 33, 64, 0.08);
+  min-height: 100dvh;
+}
+
+.page-shell > main {
+  flex: 1;
 }
 
 .blue-panel {
@@ -47,4 +53,85 @@ img {
   background:
     radial-gradient(circle at 55% 40%, rgba(0, 114, 206, 0.12), transparent 42%),
     linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+}
+
+.animate-rise {
+  animation: rise-in 520ms ease both;
+}
+
+.animate-drop {
+  animation: drop-in 460ms ease both;
+}
+
+.motion-card {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.motion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(23, 32, 51, 0.14);
+}
+
+.motion-button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.motion-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 104, 201, 0.22);
+}
+
+.motion-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.image-zoom {
+  transition: transform 320ms ease;
+}
+
+.motion-card:hover .image-zoom {
+  transform: scale(1.06) rotate(0.5deg);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
 }

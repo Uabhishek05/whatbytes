@@ -55,9 +55,9 @@ export function ProductListing() {
   const clearFilters = () => router.push("/");
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[250px_1fr] lg:gap-8">
+    <div className="grid w-full gap-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-8 2xl:grid-cols-[280px_minmax(0,1fr)]">
       <aside className="space-y-4 sm:space-y-6">
-        <section className="blue-panel rounded-xl p-4 text-white shadow-soft sm:p-6">
+        <section className="blue-panel animate-rise motion-card rounded-xl p-4 text-white shadow-soft sm:p-6">
           <div className="mb-4 flex items-center justify-between sm:mb-5">
             <h2 className="text-xl font-bold sm:text-2xl">Filters</h2>
             <SlidersHorizontal className="h-5 w-5" />
@@ -91,7 +91,7 @@ export function ProductListing() {
           </div>
         </section>
 
-        <section className="rounded-lg bg-white p-4 shadow-sm sm:p-6">
+        <section className="animate-rise motion-card rounded-lg bg-white p-4 shadow-sm sm:p-6" style={{ animationDelay: "80ms" }}>
           <FilterRadioGroup
             title="Brand"
             options={["All", ...brands]}
@@ -121,7 +121,7 @@ export function ProductListing() {
           <h1 className="text-2xl font-extrabold text-ink sm:text-3xl">Product Listing</h1>
           <button
             onClick={clearFilters}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-line bg-white px-4 text-sm font-bold text-ink transition hover:border-[#0068c9]"
+            className="motion-button inline-flex h-10 items-center gap-2 rounded-lg border border-line bg-white px-4 text-sm font-bold text-ink hover:border-[#0068c9]"
           >
             <X className="h-4 w-4" />
             Clear
@@ -136,16 +136,20 @@ export function ProductListing() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-5 xl:grid-cols-[1fr_320px]">
-            <div className="grid auto-rows-min grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5">
-              {gridProducts.map((product) => (
-                <article key={product.id} className="rounded-lg bg-white p-3 shadow-sm sm:p-4">
+          <div className="grid gap-5 xl:grid-cols-[1fr_340px] 2xl:grid-cols-[1fr_380px]">
+            <div className="grid auto-rows-min grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5 2xl:grid-cols-4">
+              {gridProducts.map((product, index) => (
+                <article
+                  key={product.id}
+                  className="animate-rise motion-card rounded-lg bg-white p-3 shadow-sm sm:p-4"
+                  style={{ animationDelay: `${Math.min(index * 45, 270)}ms` }}
+                >
                   <Link href={`/product/${product.id}`}>
                     <div className="product-image-bg aspect-square overflow-hidden rounded-md">
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="h-full w-full object-contain p-4 transition duration-300 hover:scale-105"
+                        className="image-zoom h-full w-full object-contain p-4"
                       />
                     </div>
                     <h2 className="mt-3 min-h-10 break-words text-base font-extrabold leading-tight text-ink">
@@ -161,13 +165,13 @@ export function ProductListing() {
             </div>
 
             {featuredProduct && (
-              <article className="rounded-xl bg-white p-4 shadow-sm sm:p-5">
+              <article className="animate-rise motion-card rounded-xl bg-white p-4 shadow-sm sm:p-5" style={{ animationDelay: "180ms" }}>
                 <Link href={`/product/${featuredProduct.id}`}>
                   <div className="product-image-bg aspect-square overflow-hidden rounded-lg sm:aspect-[4/5]">
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.title}
-                      className="h-full w-full object-contain p-5"
+                      className="image-zoom h-full w-full object-contain p-5"
                     />
                   </div>
                   <h2 className="mt-4 break-words text-xl font-extrabold text-ink sm:mt-5 sm:text-2xl">

@@ -18,7 +18,7 @@ export function AddToCartButton({
   return (
     <button
       onClick={() => addToCart(product, quantity)}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-[#0068c9] font-bold text-white shadow-sm transition hover:bg-[#0056aa] ${
+      className={`motion-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#0068c9] font-bold text-white shadow-sm hover:bg-[#0056aa] ${
         large ? "h-12 w-full px-6 text-base sm:w-auto sm:px-8" : "h-10 px-4 text-sm"
       }`}
     >
